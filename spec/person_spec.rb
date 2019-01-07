@@ -22,7 +22,7 @@ RSpec.describe Person do
       expect(person.full_name).to eq('Rachel Karen Green')
     end
 
-    it "does not add extra spaces if middle name is missing" do
+    it 'does not add extra spaces if middle name is missing' do
       person = Person.new(
         first_name: 'Phoebe',
         last_name: 'Buffay-Hannigan'
@@ -53,13 +53,44 @@ RSpec.describe Person do
       expect(person.full_name_with_middle_initial).to eq('Ross E. Geller')
     end
 
-    it "does not add extra spaces or a period if middle name is missing" do
+    it 'does not add extra spaces or a period if middle name is missing' do
       person = Person.new(
         first_name: 'Monica',
         last_name: 'Geller'
       )
 
       expect(person.full_name_with_middle_initial).to eq('Monica Geller')
+    end
+  end
+
+  describe '#initials' do
+    it 'returns all initials' do
+      person = Person.new(
+        first_name: 'Janice',
+        middle_name: 'Litman',
+        last_name: 'Goralnik'
+      )
+
+      expect(person.initials).to eq('JLG')
+    end
+
+    it 'returns all initials of a different person' do
+      person = Person.new(
+        first_name: 'Ursula',
+        middle_name: 'Pamela',
+        last_name: 'Buffay'
+      )
+
+      expect(person.initials).to eq('UPB')
+    end
+
+    it 'returns two characters if middle name is missing' do
+      person = Person.new(
+        first_name: 'Michael',
+        last_name: 'Hannigan'
+      )
+
+      expect(person.initials).to eq('MH')
     end
   end
 end
