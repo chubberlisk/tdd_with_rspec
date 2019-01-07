@@ -31,4 +31,35 @@ RSpec.describe Person do
       expect(person.full_name).to eq('Phoebe Buffay-Hannigan')
     end
   end
+
+  describe '#full_name_with_middle_initial' do
+    it 'concatenates first name, middle initial with period, and last name with spaces' do
+      person = Person.new(
+        first_name: 'Joesph',
+        middle_name: 'Francis',
+        last_name: 'Tribbiani'
+      )
+
+      expect(person.full_name_with_middle_initial).to eq('Joesph F. Tribbiani')
+    end
+
+    it 'concatenates first name, middle initial with period, and last name with spaces of a different person' do
+      person = Person.new(
+        first_name: 'Ross',
+        middle_name: 'Eustace',
+        last_name: 'Geller'
+      )
+
+      expect(person.full_name_with_middle_initial).to eq('Ross E. Geller')
+    end
+
+    it "does not add extra spaces or a period if middle name is missing" do
+      person = Person.new(
+        first_name: 'Monica',
+        last_name: 'Geller'
+      )
+
+      expect(person.full_name_with_middle_initial).to eq('Monica Geller')
+    end
+  end
 end
