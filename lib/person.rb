@@ -13,4 +13,9 @@ class Person
     return full_name if @middle_name.nil?
     [@first_name, @middle_name[0].concat('.'), @last_name].join(' ')
   end
+
+  def initials
+    return @first_name[0] + @last_name[0] if @middle_name.nil?
+    @first_name[0] + @middle_name[0] + @last_name[0]
+  end
 end
